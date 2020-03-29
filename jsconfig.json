@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "jsx": "react",
+    "paths": {
+      "Components/*": ["../node_modules/UI/src/components/*"],
+      "Constants/*": ["../node_modules/UI/src/constants/*"],
+      "Containers/*": ["containers/*"],
+      "Lib/*": ["../node_modules/UI/src/lib/*"],
+      "Store/*": ["store/*"],
+      "Utils/*": ["../node_modules/UI/src/utils/*"],
+      "Utils": ["../node_modules/UI/src/utils/index.js"],
+      "FlightUtils/*": ["utils/flights/*"],
+      "FlightUtils": ["utils/flights/index.js"],
+      "FlightComponents/*": ["components/Flights/*"],
+      "FlightConstants/*": ["constants/flights/*"],
+      "FlightConstants": ["constants/flights/index.js"],
+      "OverrideStyles": ["styles/orverride.scss"]
+    }
+  }
+}

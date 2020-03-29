@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+  <title>referral</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <rect id="path-1" x="0" y="0" width="44" height="44"></rect>
+  </defs>
+  <g id="referral" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Group-5">
+      <mask id="mask-2" fill="white">
+        <use xlink:href="#path-1"></use>
+      </mask>
+      <g id="Mask"></g>
+      <g mask="url(#mask-2)" stroke="#212329" stroke-width="0.6">
+        <g transform="translate(4.000000, 11.000000)">
+          <polygon id="Stroke-1" points="0.9553616 8.865922 35.2648816 -2.13162821e-14 19.7450916 19.8124 14.6826416 16.81741 9.9391066 21.31738 7.6347336 13.08342"></polygon>
+          <path d="" id="Stroke-3"></path>
+          <polyline id="Stroke-5" points="10.023867 21.028916 11.244619 14.802641 19.726143 19.776375"></polyline>
+          <polyline id="Stroke-7" points="7.728935 12.98998 34.811445 0.31761 11.190042 14.59313"></polyline>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

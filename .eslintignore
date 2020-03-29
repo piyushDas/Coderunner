@@ -1,0 +1,5 @@
+/build/**
+/build_*/**
+/config/**
+*.test.js
+/src/serviceWorker.js

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+  <title>reschedule</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <rect id="path-1" x="0" y="0" width="25" height="25"></rect>
+  </defs>
+  <g id="reschedule" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g>
+      <mask id="mask-2" fill="white">
+        <use xlink:href="#path-1"></use>
+      </mask>
+      <g id="Mask"></g>
+      <g mask="url(#mask-2)" stroke="#3366CC" stroke-linejoin="round">
+        <g transform="translate(0.500000, 4.500000)">
+          <polyline id="Stroke-1" points="19.1666667 0 23 1.91666667 19.1666667 3.83333333"></polyline>
+          <polyline id="Stroke-3" points="19.1666667 11.5 23 13.4166667 19.1666667 15.3333333"></polyline>
+          <path d="M0.883728904,1.71330833 C13.7664602,1.71330833 11.7095222,13.3832688 22.600856,13.3832688" id="Stroke-5"></path>
+          <path d="M0.883728904,13.383263 C13.7664602,13.383263 11.7095222,1.71330258 22.600856,1.71330258" id="Stroke-7"></path>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
