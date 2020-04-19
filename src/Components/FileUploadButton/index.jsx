@@ -1,6 +1,6 @@
 /* eslint no-undef: "error" */
 /* eslint-env browser */
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { AppContext } from '../../context'
 import Uploadlogo from '../../icons/upload.png'
 import './file.css'

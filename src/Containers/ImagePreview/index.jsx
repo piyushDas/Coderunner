@@ -20,10 +20,10 @@ const ImagePreview = ({ dataUri, isFullscreen, setDataUri }) => {
     const canvas = document.getElementById('canvasEl')
     const ctx = canvas.getContext('2d')
     // canvas.style.display = 'block'
-    const largeImg = document.getElementById("canvasEl")
-    const img = document.getElementsByClassName("ReactCrop__image")[0]
-    const heightMultFactor = largeImg.height/img.height
-    const widthMultFactor = largeImg.width/img.width
+    const largeImg = document.getElementById('canvasEl')
+    const img = document.getElementsByClassName('ReactCrop__image')[0]
+    const heightMultFactor = largeImg.height / img.height
+    const widthMultFactor = largeImg.width / img.width
     const coords = {
       x1: cr.x * widthMultFactor,
       y1: cr.y * heightMultFactor,
@@ -56,10 +56,6 @@ const ImagePreview = ({ dataUri, isFullscreen, setDataUri }) => {
       ctx.drawImage(image, 0, 0)
     }
     image.src = dataUri
-    // image.width = "100%"
-    const el = document.getElementsByClassName('ReactCrop__image')[0]
-    // image.width = el.getBoundingClientRect().width
-    // image.height = el.getBoundingClientRect().height
     canvas.height = image.height
     canvas.width = image.width
     // ctx.putImageData(image, 0, 0)

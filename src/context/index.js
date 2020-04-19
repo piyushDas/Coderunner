@@ -50,9 +50,9 @@ export const AppState = ({ children }) => {
         }
       })
       .catch(err => {
-        let message = "Not able to upload the file. Only image file types are valid - jpg and png"
+        let message = 'Not able to upload the file. Only image file types are valid - jpg and png'
         if (err.response.status === 400) {
-          message = "Please select a file to upload."
+          message = 'Please select a file to upload.'
         }
         setApiError(true)
         console.error(err)
