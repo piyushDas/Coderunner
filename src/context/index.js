@@ -45,12 +45,18 @@ export const AppState = ({ children }) => {
       .then(res => {
         if (res) {
           setInterpretedData(res.data)
+          updateFileFlag(false)
+          updateCodeFlag(true)
         }
       })
       .catch(err => {
+        let message = "Not able to upload the file. Only image file types are valid - jpg and png"
+        if (err.response.status === 400) {
+          message = "Please select a file to upload."
+        }
         setApiError(true)
         console.error(err)
-        setApiErrorMessage(err)
+        setApiErrorMessage(message)
       })
   }
 

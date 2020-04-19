@@ -1,6 +1,6 @@
 /* eslint no-undef: "error" */
 /* eslint-env browser */
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { AppContext } from '../../context'
 import Uploadlogo from '../../icons/upload.png'
 import './file.css'
@@ -9,9 +9,11 @@ const FileUploadButton = () => {
   const {
     updateCameraFlag,
     updatePreviewFlag,
-    updateFileFlag,
+    // updateFileFlag,
     uploadSelectedPhoto,
-    updateCodeFlag
+    apiError,
+    apiErrorMessage
+    // updateCodeFlag
   } = useContext(AppContext)
 
   const [selectedFile, setSelectedFile] = useState({
@@ -25,11 +27,9 @@ const FileUploadButton = () => {
   const uploadFile = () => {
     const formData = new FormData()
     formData.append('file', selectedFile)
-    updateCodeFlag(true)
     updateCameraFlag(false)
     updatePreviewFlag(false)
     uploadSelectedPhoto(formData)
-    updateFileFlag(false)
   }
 
   return (
@@ -55,6 +55,11 @@ const FileUploadButton = () => {
           Upload
         </button>
       </div>
+      <If condition={apiError}>
+        <div className="mt-20 bg-darker-gray c-white pl-20 pr-20 pb-10 pt-10 lh-copy">
+          {apiErrorMessage}
+        </div>
+      </If>
     </>
   )
 }
