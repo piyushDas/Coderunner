@@ -70,7 +70,7 @@ header img{
 }
 
 .ReactCrop__image{
-  max-width: inherit;
+  max-width: 100%;
   transform: rotateY(180deg)
 }
 

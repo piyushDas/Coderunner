@@ -20,19 +20,21 @@ const ImagePreview = ({ dataUri, isFullscreen, setDataUri }) => {
     const canvas = document.getElementById('canvasEl')
     const ctx = canvas.getContext('2d')
     // canvas.style.display = 'block'
-    // const heightMultFactor = canvas.height / canvas.getBoundingClientRect().height
-    // const widthMultFactor = canvas.width / canvas.getBoundingClientRect().width
+    const largeImg = document.getElementById("canvasEl")
+    const img = document.getElementsByClassName("ReactCrop__image")[0]
+    const heightMultFactor = largeImg.height/img.height
+    const widthMultFactor = largeImg.width/img.width
     const coords = {
-      x1: cr.x,
-      y1: cr.y,
-      x2: (cr.width + cr.x),
-      y2: (cr.height + cr.y)
+      x1: cr.x * widthMultFactor,
+      y1: cr.y * heightMultFactor,
+      x2: (cr.width + cr.x) * widthMultFactor,
+      y2: (cr.height + cr.y) * heightMultFactor
     }
     // canvas.style.display = 'none'
     const imageData = ctx.getImageData(coords.x1, coords.y1, coords.x2, coords.y2)
     const canvas1 = document.getElementById('canvasElCropPreview')
-    canvas1.width = cr.width
-    canvas1.height = cr.height
+    canvas1.width = cr.width * widthMultFactor
+    canvas1.height = cr.height * heightMultFactor
     const ctx1 = canvas1.getContext('2d')
     ctx1.rect(0, 0, cr.height, cr.width)
     ctx1.fillStyle = 'white'
@@ -54,8 +56,13 @@ const ImagePreview = ({ dataUri, isFullscreen, setDataUri }) => {
       ctx.drawImage(image, 0, 0)
     }
     image.src = dataUri
-    canvas.width = image.width
+    // image.width = "100%"
+    const el = document.getElementsByClassName('ReactCrop__image')[0]
+    // image.width = el.getBoundingClientRect().width
+    // image.height = el.getBoundingClientRect().height
     canvas.height = image.height
+    canvas.width = image.width
+    // ctx.putImageData(image, 0, 0)
     // const _base64ToArrayBuffer = (base64) => {
     //   var binary_string = window.atob(base64);
     //   var len = binary_string.length;
@@ -92,8 +99,14 @@ const ImagePreview = ({ dataUri, isFullscreen, setDataUri }) => {
           crop={crop}
           onChange={onCropChange}
         />
-        <canvas id="canvasEl" style={{ display: 'none' }} />
-        <canvas id="canvasElCropPreview" style={{ display: 'none' }} />
+        <canvas
+          id="canvasEl"
+          style={{ display: 'none' }}
+        />
+        <canvas
+          id="canvasElCropPreview"
+          style={{ display: 'none' }}
+        />
       </div>
     </>
   )
