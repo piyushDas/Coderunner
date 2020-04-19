@@ -1,6 +1,6 @@
 /* eslint no-undef: "error" */
 /* eslint-env browser */
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { List, ListItem } from 'Lib/List'
 import { SectionHeader } from 'Lib/Text'
 import { AppContext } from '../../context'
@@ -18,8 +18,13 @@ const LandingView = () => {
     updateFileFlag,
     showCode,
     showRun,
-    showOutput
+    showOutput,
+    setInterpretedData
   } = useContext(AppContext)
+
+  useEffect(() => {
+    setInterpretedData('')
+  }, [])
 
   const switchCamera = () => {
     updateCameraFlag(true)

@@ -48,7 +48,6 @@ export const AppState = ({ children }) => {
         }
       })
       .catch(err => {
-        console.log(err)
         setApiError(true)
         console.error(err)
         setApiErrorMessage(err)
@@ -61,7 +60,7 @@ export const AppState = ({ children }) => {
     appAxiosInstance(apiUrl, 'post', false, payload)
       .then(res => {
         if (res) {
-          res.data = res.data.split(/\n/)
+          res.data = res.data.toString().split(/\n/)
           setInterpretedData(res.data)
           updateCodeFlag(false)
           if (payload.language === 'JS') {
@@ -72,10 +71,10 @@ export const AppState = ({ children }) => {
         }
       })
       .catch(err => {
-        console.log(err)
         setApiError(true)
         console.error(err)
-        setApiErrorMessage(err)
+        const message = err.response.data.split(/\n/)
+        setApiErrorMessage(message)
       })
   }
 
@@ -85,15 +84,15 @@ export const AppState = ({ children }) => {
     appAxiosInstance(apiUrl, 'post', false, payload)
       .then(res => {
         if (res) {
-          res.data = res.data.split(/\n/)
+          res.data = res.data.toString().split(/\n/)
           setInterpretedData(res.data)
         }
       })
       .catch(err => {
-        console.log(err)
         setApiError(true)
         console.error(err)
-        setApiErrorMessage(err)
+        const message = err.response.data.split(/\n/)
+        setApiErrorMessage(message)
       })
   }
 

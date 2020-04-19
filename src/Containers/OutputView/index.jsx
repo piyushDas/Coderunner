@@ -13,7 +13,9 @@ const OutputView = () => {
     updateCodeFlag,
     updateRunFlag,
     showOutput,
-    updateOutputFlag
+    updateOutputFlag,
+    setInterpretedData,
+    setSelectedEnv
   } = useContext(AppContext)
 
   const restartCodeRunner = () => {
@@ -22,6 +24,8 @@ const OutputView = () => {
     updatePreviewFlag(false)
     updateRunFlag(false)
     updateOutputFlag(false)
+    setInterpretedData('')
+    setSelectedEnv('C')
   }
 
   return (

@@ -14,7 +14,7 @@ const CodeView = () => {
     updateCameraFlag,
     updatePreviewFlag,
     showCode,
-    updateCodeFlag,
+    // updateCodeFlag,
     // updateRunFlag,
     selectedEnv,
     setSelectedEnv,
@@ -23,12 +23,17 @@ const CodeView = () => {
   } = useContext(AppContext)
 
   const [textAreaData, setTextAreaData] = useState(interpretedData)
-  const [errorConsole, showErrorConsole] = useState(errorConsole)
+  const [errorConsole, showErrorConsole] = useState(false)
+
+  useEffect(() => {
+    setTextAreaData(interpretedData)
+  }, [interpretedData])
+
   useEffect(() => {
     if (apiError) {
       showErrorConsole(true)
     }
-  }, [])
+  }, [apiError])
 
   const compileCode = () => {
     setInterpretedData(textAreaData)
@@ -43,7 +48,7 @@ const CodeView = () => {
   }
 
   const editCode = e => {
-    console.log(e.currentTarget.value)
+    showErrorConsole(false)
     setTextAreaData(e.currentTarget.value)
   }
 
@@ -53,13 +58,13 @@ const CodeView = () => {
   ]
 
   const handleInputChange = e => {
-    console.log(e.target.value)
+    showErrorConsole(false)
     setSelectedEnv(e.target.value)
   }
 
   return (
     <>
-      <If condition={showCode && !errorConsole}>
+      <If condition={showCode}>
         <div>
           <PageHeader
             imageSrc={CompileIcon}
@@ -104,7 +109,14 @@ const CodeView = () => {
       </If>
 
       <If condition={errorConsole && apiErrorMessage && showCode}>
-        {apiErrorMessage}
+        <div className="fs-16 c-black-60 fw-600 ml-10 mt-30">
+          Error console
+        </div>
+        <div className="mt-10 code-input fs-16 bg-black c-white fw-500 lh-title">
+          {apiErrorMessage.map((el, index) => (
+            <div className={index === 0 ? 'c-red' : ''}>{el}</div>
+          ))}
+        </div>
       </If>
     </>
   )
