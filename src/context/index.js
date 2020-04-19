@@ -32,7 +32,7 @@ export const AppState = ({ children }) => {
   const [showRun, updateRunFlag] = useState(false)
   const [showOutput, updateOutputFlag] = useState(false)
   const [apiError, setApiError] = useState(false)
-  const [apiErrorMessage, setApiErrorMessage] = useState(false)
+  const [apiErrorMessage, setApiErrorMessage] = useState([])
   // const [dataUri, setDataUri] = useState('')
   const baseUrl = 'http://ec2-18-136-213-158.ap-southeast-1.compute.amazonaws.com:9080'
   const [selectedEnv, setSelectedEnv] = useState('C')
