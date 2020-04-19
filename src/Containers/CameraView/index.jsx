@@ -2,6 +2,7 @@
 /* eslint-env browser */
 import React, { useContext, useEffect } from 'react'
 import Camera from 'react-html5-camera-photo'
+import PageLoader from 'Lib/Pageloader'
 import { AppContext } from '../../context'
 import PageHeader from '../../Components/PageHeaders'
 import FileUploadButton from '../../Components/FileUploadButton'
@@ -22,7 +23,8 @@ const CameraView = () => {
     showFileUpload,
     uploadSelectedPhoto,
     croppedDataUri,
-    updateCodeFlag
+    updateCodeFlag,
+    pageLoader
   } = useContext(AppContext)
 
   useEffect(() => {
@@ -96,6 +98,7 @@ const CameraView = () => {
         <div className="bg-white pl-10 pt-10 pb-10 pr-10">
           <Camera
             onTakePhotoAnimationDone={handleTakePhotoAnimationDone}
+            idealFacingMode="environment"
             isFullscreen={isFullscreen}
           />
         </div>
@@ -109,6 +112,12 @@ const CameraView = () => {
         <div>
           <FileUploadButton />
         </div>
+      </If>
+      <If condition={pageLoader}>
+        <PageLoader
+          title="Uploading your image"
+          message="Please wait while we fetch your code"
+        />
       </If>
     </div>
   )

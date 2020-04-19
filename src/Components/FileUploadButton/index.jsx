@@ -1,12 +1,14 @@
 /* eslint no-undef: "error" */
 /* eslint-env browser */
 import React, { useState, useContext } from 'react'
+import PageLoader from 'Lib/Pageloader'
 import { AppContext } from '../../context'
 import Uploadlogo from '../../icons/upload.png'
 import './file.css'
 
 const FileUploadButton = () => {
   const {
+    pageLoader,
     updateCameraFlag,
     updatePreviewFlag,
     // updateFileFlag,
@@ -59,6 +61,13 @@ const FileUploadButton = () => {
         <div className="mt-20 bg-darker-gray c-white pl-20 pr-20 pb-10 pt-10 lh-copy">
           {apiErrorMessage}
         </div>
+      </If>
+
+      <If condition={pageLoader}>
+        <PageLoader
+          title="Uploading your file"
+          message="Please wait while we fetch your code"
+        />
       </If>
     </>
   )

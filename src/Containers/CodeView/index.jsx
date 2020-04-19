@@ -2,6 +2,7 @@
 /* eslint-env browser */
 import React, { useContext, useState, useEffect } from 'react'
 // import Select from 'react-select'
+import PageLoader from 'Lib/Pageloader'
 import { AppContext } from '../../context'
 import PageHeader from '../../Components/PageHeaders'
 import CompileIcon from '../../icons/compile.png'
@@ -19,7 +20,8 @@ const CodeView = () => {
     selectedEnv,
     setSelectedEnv,
     apiError,
-    apiErrorMessage
+    apiErrorMessage,
+    pageLoader
   } = useContext(AppContext)
 
   const [textAreaData, setTextAreaData] = useState(interpretedData)
@@ -117,6 +119,12 @@ const CodeView = () => {
             <div className={index === 0 ? 'c-red' : ''}>{el}</div>
           ))}
         </div>
+      </If>
+      <If condition={pageLoader}>
+        <PageLoader
+          title="Uploading your code"
+          message="Please wait while we check your code"
+        />
       </If>
     </>
   )

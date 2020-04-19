@@ -33,16 +33,19 @@ export const AppState = ({ children }) => {
   const [showOutput, updateOutputFlag] = useState(false)
   const [apiError, setApiError] = useState(false)
   const [apiErrorMessage, setApiErrorMessage] = useState([])
+  const [pageLoader, setPageLoader] = useState(false)
   // const [dataUri, setDataUri] = useState('')
   const baseUrl = 'http://ec2-18-136-213-158.ap-southeast-1.compute.amazonaws.com:9080'
   const [selectedEnv, setSelectedEnv] = useState('C')
   // const [compileFailed, setCompileFailed] = useState(false)
 
   const uploadSelectedPhoto = payload => {
+    setPageLoader(true)
     const apiUrl = `${baseUrl}/image/upload`
     setApiError(false)
     appAxiosInstance(apiUrl, 'post', true, payload)
       .then(res => {
+        setPageLoader(false)
         if (res) {
           setInterpretedData(res.data)
           updateFileFlag(false)
@@ -50,6 +53,7 @@ export const AppState = ({ children }) => {
         }
       })
       .catch(err => {
+        setPageLoader(false)
         let message = 'Not able to upload the file. Only image file types are valid - jpg and png'
         if (err.response.status === 400) {
           message = 'Please select a file to upload.'
@@ -61,11 +65,13 @@ export const AppState = ({ children }) => {
   }
 
   const compileCodeAPI = payload => {
+    setPageLoader(true)
     const apiUrl = `${baseUrl}/code/compile`
     setApiError(false)
     appAxiosInstance(apiUrl, 'post', false, payload)
       .then(res => {
         if (res) {
+          setPageLoader(false)
           res.data = res.data.toString().split(/\n/)
           setInterpretedData(res.data)
           updateCodeFlag(false)
@@ -77,6 +83,7 @@ export const AppState = ({ children }) => {
         }
       })
       .catch(err => {
+        setPageLoader(false)
         setApiError(true)
         console.error(err)
         const message = err.response.data.split(/\n/)
@@ -85,16 +92,19 @@ export const AppState = ({ children }) => {
   }
 
   const runCodeAPI = payload => {
+    setPageLoader(true)
     const apiUrl = `${baseUrl}/code/run`
     setApiError(false)
     appAxiosInstance(apiUrl, 'post', false, payload)
       .then(res => {
+        setPageLoader(false)
         if (res) {
           res.data = res.data.toString().split(/\n/)
           setInterpretedData(res.data)
         }
       })
       .catch(err => {
+        setPageLoader(false)
         setApiError(true)
         console.error(err)
         const message = err.response.data.split(/\n/)
@@ -133,7 +143,8 @@ export const AppState = ({ children }) => {
         apiErrorMessage,
         setApiErrorMessage,
         selectedEnv,
-        setSelectedEnv
+        setSelectedEnv,
+        pageLoader
       }}
     >
       {children}
