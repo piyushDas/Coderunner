@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 // import { getBasePath } from 'AmendmentsUtils'
 import App from './App'
-import 'Styles/app.scss'
+import './library.css'
 
 ReactDOM.render((
   <BrowserRouter>
