@@ -23,10 +23,24 @@ export const AppState = ({ children }) => {
   const appHeader = 'Bouncy ka app'
   const appSubHeader = 'Bouncy k app ka subheader'
   const [interpretedData, setInterpretedData] = useState('')
+  const [dataUri, setDataUri] = useState('')
+  const [croppedDataUri, setCroppedDataUri] = useState('')
+  const [showCamera, updateCameraFlag] = useState(false)
+  const [showPreview, updatePreviewFlag] = useState(false)
+  const [showFileUpload, updateFileFlag] = useState(false)
+  const [showCode, updateCodeFlag] = useState(false)
+  const [showRun, updateRunFlag] = useState(false)
+  const [showOutput, updateOutputFlag] = useState(false)
+  const [apiError, setApiError] = useState(false)
+  const [apiErrorMessage, setApiErrorMessage] = useState(false)
   // const [dataUri, setDataUri] = useState('')
+  const baseUrl = 'http://ec2-18-136-213-158.ap-southeast-1.compute.amazonaws.com:9080'
+  const [selectedEnv, setSelectedEnv] = useState('C')
+  // const [compileFailed, setCompileFailed] = useState(false)
 
   const uploadSelectedPhoto = payload => {
-    const apiUrl = 'http://ec2-18-139-255-173.ap-southeast-1.compute.amazonaws.com:9080/image/upload'
+    const apiUrl = `${baseUrl}/image/upload`
+    setApiError(false)
     appAxiosInstance(apiUrl, 'post', true, payload)
       .then(res => {
         if (res) {
@@ -34,33 +48,52 @@ export const AppState = ({ children }) => {
         }
       })
       .catch(err => {
+        console.log(err)
+        setApiError(true)
         console.error(err)
+        setApiErrorMessage(err)
       })
   }
 
   const compileCodeAPI = payload => {
-    const apiUrl = 'http://ec2-18-139-255-173.ap-southeast-1.compute.amazonaws.com:9080/code/compile'
+    const apiUrl = `${baseUrl}/code/compile`
+    setApiError(false)
     appAxiosInstance(apiUrl, 'post', false, payload)
       .then(res => {
         if (res) {
+          res.data = res.data.split(/\n/)
           setInterpretedData(res.data)
+          updateCodeFlag(false)
+          if (payload.language === 'JS') {
+            updateOutputFlag(true)
+          } else {
+            updateRunFlag(true)
+          }
         }
       })
       .catch(err => {
+        console.log(err)
+        setApiError(true)
         console.error(err)
+        setApiErrorMessage(err)
       })
   }
 
   const runCodeAPI = payload => {
-    const apiUrl = 'http://ec2-18-139-255-173.ap-southeast-1.compute.amazonaws.com:9080/code/run'
+    const apiUrl = `${baseUrl}/code/run`
+    setApiError(false)
     appAxiosInstance(apiUrl, 'post', false, payload)
       .then(res => {
         if (res) {
+          res.data = res.data.split(/\n/)
           setInterpretedData(res.data)
         }
       })
       .catch(err => {
+        console.log(err)
+        setApiError(true)
         console.error(err)
+        setApiErrorMessage(err)
       })
   }
 
@@ -72,9 +105,30 @@ export const AppState = ({ children }) => {
         uploadSelectedPhoto,
         interpretedData,
         compileCodeAPI,
-        runCodeAPI
-        // dataUri,
-        // setDataUri
+        runCodeAPI,
+        dataUri,
+        setDataUri,
+        croppedDataUri,
+        setCroppedDataUri,
+        showCamera,
+        updateCameraFlag,
+        showPreview,
+        updatePreviewFlag,
+        showFileUpload,
+        updateFileFlag,
+        showCode,
+        updateCodeFlag,
+        showRun,
+        updateRunFlag,
+        showOutput,
+        updateOutputFlag,
+        setInterpretedData,
+        apiError,
+        setApiError,
+        apiErrorMessage,
+        setApiErrorMessage,
+        selectedEnv,
+        setSelectedEnv
       }}
     >
       {children}

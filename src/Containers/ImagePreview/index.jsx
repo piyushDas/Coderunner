@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import * as _ from 'underscore'
 import ReactCrop from 'react-image-crop'
-import PageHeader from '../PageHeaders'
+import PageHeader from '../../Components/PageHeaders'
 import CropIcon from '../../icons/crop.png'
 import './imagePreview.css'
 

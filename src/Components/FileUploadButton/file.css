@@ -1,0 +1,13 @@
+.hide-file{
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.file-button {
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
